@@ -908,6 +908,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1461998184938437026, guid: 87bb2c256c1da63408e2b5fdc8585fa3, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1461998184938437027, guid: 87bb2c256c1da63408e2b5fdc8585fa3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -958,11 +962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2273153536018526258, guid: 87bb2c256c1da63408e2b5fdc8585fa3, type: 3}
       propertyPath: JumpForce
-      value: 400
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 2273153536018526259, guid: 87bb2c256c1da63408e2b5fdc8585fa3, type: 3}
       propertyPath: m_GravityScale
-      value: 1.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2273153536018526269, guid: 87bb2c256c1da63408e2b5fdc8585fa3, type: 3}
       propertyPath: m_Enabled

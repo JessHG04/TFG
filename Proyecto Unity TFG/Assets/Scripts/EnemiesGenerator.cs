@@ -13,13 +13,17 @@ public class EnemiesGenerator : MonoBehaviour {
         currentSpeed = minSpeed;
         generateEnemy();
     }
-    public void GenerateNextEnemy() {
+    
+    /*public void GenerateNextEnemy() {
         if(currentEnemies < maxEnemies) {
-            float randWait = Random.Range(0.5f, 1.2f);
+            //float randWait = Random.Range(0.5f, 1.2f);
+            float randWait = 1.5f;
             Invoke("generateEnemy", randWait);    
         }
     }
-    private void generateEnemy(){
+    */
+    
+    public void generateEnemy(){
         GameObject EnemyInstance = Instantiate(enemy, transform.position, transform.rotation);
         EnemyInstance.GetComponent<Enemy>().generator = this;
         currentEnemies++;
