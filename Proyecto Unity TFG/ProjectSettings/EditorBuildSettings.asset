@@ -10,8 +10,11 @@ EditorBuildSettings:
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/NinjaRun.unity
-    guid: ffe09085fb3e34f46ab1eff35aa55087
+    guid: d26702ab905d69a47874934a2da4b39b
   - enabled: 1
     path: Assets/Scenes/HigherLower.unity
     guid: 6f47d60bd8d29484f9574a3aada967ca
+  - enabled: 1
+    path: Assets/Scenes/NinjaRun2.unity
+    guid: ffe09085fb3e34f46ab1eff35aa55087
   m_configObjects: {}

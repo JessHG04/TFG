@@ -84,6 +84,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -580,6 +581,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Sprites_Chrome_Dinousaur_4: -3416149584005311064
+      Sprites_Chrome_Dinousaur_19: -7744037046668144781
+      Sprites_Chrome_Dinousaur_9: -9020587741837801094
+      Sprites_Chrome_Dinousaur_13: 2636611845479198760
+      Sprites_Chrome_Dinousaur_2: -1319229689813084879
+      Sprites_Chrome_Dinousaur_15: 985855782547675397
+      Sprites_Chrome_Dinousaur_10: 1341022054903245868
+      Sprites_Chrome_Dinousaur_20: -3786991714253440475
+      Sprites_Chrome_Dinousaur_12: -5755264669140536275
+      Sprites_Chrome_Dinousaur_7: 2616695720028004806
+      Sprites_Chrome_Dinousaur_17: -7478983090598697576
+      Sprites_Chrome_Dinousaur_0: 5362231720644929428
+      Sprites_Chrome_Dinousaur_5: 8781329118719456109
+      Sprites_Chrome_Dinousaur_16: -3961268894918286622
+      Sprites_Chrome_Dinousaur_3: 2585029021239229735
+      Sprites_Chrome_Dinousaur_8: -5748057855090869541
+      Sprites_Chrome_Dinousaur_1: 6528871324421475819
+      Sprites_Chrome_Dinousaur_6: 7349034200645533870
+      Sprites_Chrome_Dinousaur_14: -5994116940715964176
+      Sprites_Chrome_Dinousaur_18: -1043713386534023176
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

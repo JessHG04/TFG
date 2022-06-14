@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemiesGenerator : MonoBehaviour {
@@ -9,9 +12,20 @@ public class EnemiesGenerator : MonoBehaviour {
     private int currentEnemies = 0;
     private int maxEnemies = 5;
 
+    private static EnemiesGenerator _instance;
+
     private void Awake() {
         currentSpeed = minSpeed;
         generateEnemy();
+        _instance = this;
+    }
+
+    private void Start() {
+        Enemy.GetInstance().OnCollisionNext += OnCollisionNext;
+    }
+
+    public static EnemiesGenerator GetInstance() {
+        return _instance;
     }
     
     /*public void GenerateNextEnemy() {
@@ -22,10 +36,17 @@ public class EnemiesGenerator : MonoBehaviour {
         }
     }
     */
+
+    private void OnCollisionNext(object sender, EventArgs e) {
+        generateEnemy();
+        //Enemy.GetInstance().OnCollisionNext -= OnCollisionNext;
+        Enemy.GetInstance().OnCollisionNext += OnCollisionNext;
+        Debug.Log("Genero enemigo");
+    }
     
     public void generateEnemy(){
         GameObject EnemyInstance = Instantiate(enemy, transform.position, transform.rotation);
-        EnemyInstance.GetComponent<Enemy>().generator = this;
+        //EnemyInstance.GetComponent<Enemy>().generator = this;
         currentEnemies++;
     }
 
