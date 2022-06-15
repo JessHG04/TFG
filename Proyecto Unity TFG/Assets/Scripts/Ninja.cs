@@ -18,6 +18,7 @@ public class Ninja : MonoBehaviour {
         if(isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)){
             //Debug.Log("Jump");
             rigidbody2d.velocity = Vector2.up*jumpForce;
+            isGrounded = false;
         }
     }
 
@@ -29,7 +30,7 @@ public class Ninja : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         //Layer 6 -> Platform
-        if(collision.gameObject.layer == 6) {
+        if(collision.gameObject.tag == "Platform") {
             if(!isGrounded) {
                 isGrounded = true;
             }
