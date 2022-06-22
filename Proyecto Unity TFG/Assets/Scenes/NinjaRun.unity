@@ -181,6 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553166370}
+  - component: {fileID: 553166371}
   m_Layer: 6
   m_Name: Platform_Start
   m_TagString: Untagged
@@ -205,6 +206,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &553166371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553166369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14db5237914e5c4468deedbb583bed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownTransform: {fileID: 553166370}
+  type: 0
 --- !u!1 &838054640
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,9 +444,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466874d7363d2054c891fac0d86fee92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformGO: {fileID: 2773839760962676711, guid: 30d33ee3286b19748814f73749cae529, type: 3}
   platformStart: {fileID: 553166370}
-  platform_1: {fileID: 0}
+  ninja: {fileID: 393032191}
+  platformsTypes:
+  - {fileID: 2773839760962676711, guid: 30d33ee3286b19748814f73749cae529, type: 3}
+  - {fileID: 8833287985491559580, guid: ec128a185c691bc49a39511d2cb513b7, type: 3}
+  - {fileID: 503156546266335171, guid: 820286060f3ddc246a58cdd1042f81a3, type: 3}
 --- !u!4 &1418946614
 Transform:
   m_ObjectHideFlags: 0

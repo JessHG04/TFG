@@ -8,6 +8,7 @@ public class Ninja : MonoBehaviour {
     private bool isGrounded = false;
     [SerializeField] private float jumpForce;
     //[SerializeField] private LayerMask platformLayer;
+    public Vector3 getPosition() => transform.position;
 
     private void Awake() {
         rigidbody2d = transform.GetComponent<Rigidbody2D>();

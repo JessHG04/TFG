@@ -3,45 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
-    public GameObject platformGO;
     [SerializeField] private Transform platformStart;
-    [SerializeField] private Transform platform_1;
+    [SerializeField] private Ninja ninja;
+    [SerializeField] private List<GameObject> platformsTypes;
     private const float platformDestroyPositionX = -50f;
+    private const float PlayerPlatformDistance = 50f;
     private List<Platform> platformList;
     private Vector3 lastEndPosition;
 
     private void Awake() {
-        Transform lastPlatformTransf;
         lastEndPosition = platformStart.Find("EndPosition").position;
         platformList = new List<Platform>();
         platformList.Add((GameObject.Find("Platform_Start")).GetComponent<Platform>());
-        
-        lastPlatformTransf = SpawnPlatform(platformStart.Find("EndPosition").position);
-        lastPlatformTransf.position = lastPlatformTransf.position + new Vector3(10, 1, 0);
-        lastPlatformTransf = SpawnPlatform(lastPlatformTransf.Find("EndPosition").position);
-        lastPlatformTransf.position = lastPlatformTransf.position + new Vector3(10, 1, 0);
-        lastPlatformTransf = SpawnPlatform(lastPlatformTransf.Find("EndPosition").position);
-        lastPlatformTransf.position = lastPlatformTransf.position + new Vector3(10, 1, 0);
-        lastPlatformTransf = SpawnPlatform(lastPlatformTransf.Find("EndPosition").position);
-        lastPlatformTransf.position = lastPlatformTransf.position + new Vector3(10, 1, 0);
-        lastPlatformTransf = SpawnPlatform(lastPlatformTransf.Find("EndPosition").position);
-        lastPlatformTransf.position = lastPlatformTransf.position + new Vector3(10, 1, 0);
-    }
-
-    private void SpawnPlatform() {
-        Transform lastPlatformTransf = SpawnPlatform(lastEndPosition);
-        lastEndPosition = lastPlatformTransf.Find("EndPosition").position;
-    }
-
-    private Transform SpawnPlatform(Vector3 spawnPosition) {
-        var plat = Instantiate(platformGO.GetComponent<Platform>());
-        plat.getPlatformTransform().position = spawnPosition;
-        platformList.Add(plat);
-        return plat.getPlatformTransform();
+        SpawnPlatform();        
     }
 
     private void Update() {
+        float distance = lastEndPosition.x - ninja.getPosition().x;
+        if(distance < PlayerPlatformDistance){
+            SpawnPlatform();
+        }
         UpdatePlatforms();
+    }
+    
+    private void SpawnPlatform() {
+        GameObject chosenPlatform = platformsTypes[Random.Range(0, platformsTypes.Count)];
+        //GameObject chosenPlatform = platformsTypes[1];
+        Transform lastPlatformTransf = SpawnPlatform(chosenPlatform, lastEndPosition);
+        lastEndPosition = lastPlatformTransf.Find("EndPosition").position;
+    }
+
+    private Transform SpawnPlatform(GameObject platform, Vector3 spawnPosition) {
+        var plat = Instantiate(platform.GetComponent<Platform>());
+        plat.MoveToInitialPosition(spawnPosition);
+        platformList.Add(plat);
+        return plat.getPlatformTransform();
     }
 
     private void UpdatePlatforms() {
@@ -52,7 +48,7 @@ public class LevelGenerator : MonoBehaviour {
             }else{
                 platformList[x].Move();
             }
-            
         }
+        lastEndPosition = platformList[platformList.Count - 1].getPlatformTransform().Find("EndPosition").position;
     }
 }
