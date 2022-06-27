@@ -27,7 +27,19 @@ public class LevelGenerator : MonoBehaviour {
     }
     
     private void SpawnPlatform() {
-        GameObject chosenPlatform = platformsTypes[Random.Range(0, platformsTypes.Count)];
+        GameObject chosenPlatform;
+        float ninjaPosY = ninja.getPosition().y;
+
+        if(ninjaPosY < (-7)){   //Ninja abajo spawn plat 1 y 2
+            chosenPlatform = platformsTypes[Random.Range(0, 1)];
+        }
+        else if(ninjaPosY > 1.5){   //Ninja arriba spawn plat 2 y 3
+            chosenPlatform = platformsTypes[Random.Range(1, 2)];
+        }
+        else{   //Ninja en medio, spawn plat 1, 2 y 3
+            chosenPlatform = platformsTypes[Random.Range(0, platformsTypes.Count)];
+        }
+        
         //GameObject chosenPlatform = platformsTypes[1];
         Transform lastPlatformTransf = SpawnPlatform(chosenPlatform, lastEndPosition);
         lastEndPosition = lastPlatformTransf.Find("EndPosition").position;

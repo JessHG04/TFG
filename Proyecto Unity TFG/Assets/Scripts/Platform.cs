@@ -18,7 +18,7 @@ public class Platform : MonoBehaviour {
             ownTransform.position = ownTransform.position + new Vector3(10 , -1, 0);
         }
         if(type == 3){
-            ownTransform.position = ownTransform.position + new Vector3(10 , -2, 0);
+            ownTransform.position = ownTransform.position + new Vector3(10 , -3, 0);
         }
     }
 
