@@ -7,9 +7,17 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] private Ninja ninja;
     [SerializeField] private List<GameObject> platformsTypes;
     private const float platformDestroyPositionX = -50f;
-    private const float PlayerPlatformDistance = 50f;
+    private const float PlayerPlatformDistance = 40f;
     private List<Platform> platformList;
     private Vector3 lastEndPosition;
+    private static LevelGenerator instance;
+    private int score = 0;
+
+    public static LevelGenerator getInstance(){
+        return instance;
+    }
+
+    public int getScore() => score;
 
     private void Awake() {
         lastEndPosition = platformStart.Find("EndPosition").position;
@@ -20,10 +28,21 @@ public class LevelGenerator : MonoBehaviour {
 
     private void Update() {
         float distance = lastEndPosition.x - ninja.getPosition().x;
-        if(distance < PlayerPlatformDistance){
-            SpawnPlatform();
+        if(ninja.getPosition().y < (-14)){
+            
+            //SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
         }
-        UpdatePlatforms();
+        else{
+            if(distance < PlayerPlatformDistance){
+                SpawnPlatform();
+            }
+            UpdatePlatforms();
+        }
+    }
+
+    public void UpdateScore() {
+        score++;
+        Debug.Log(score);
     }
     
     private void SpawnPlatform() {
@@ -31,12 +50,15 @@ public class LevelGenerator : MonoBehaviour {
         float ninjaPosY = ninja.getPosition().y;
 
         if(ninjaPosY < (-7)){   //Ninja abajo spawn plat 1 y 2
+            //Debug.Log("Abajo");
             chosenPlatform = platformsTypes[Random.Range(0, 1)];
         }
         else if(ninjaPosY > 1.5){   //Ninja arriba spawn plat 2 y 3
+            //Debug.Log("Arriba");
             chosenPlatform = platformsTypes[Random.Range(1, 2)];
         }
         else{   //Ninja en medio, spawn plat 1, 2 y 3
+            //Debug.Log("Medio");
             chosenPlatform = platformsTypes[Random.Range(0, platformsTypes.Count)];
         }
         
