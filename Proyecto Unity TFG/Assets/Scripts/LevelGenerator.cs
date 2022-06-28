@@ -20,6 +20,7 @@ public class LevelGenerator : MonoBehaviour {
     public int getScore() => score;
 
     private void Awake() {
+        instance = this;
         lastEndPosition = platformStart.Find("EndPosition").position;
         platformList = new List<Platform>();
         platformList.Add((GameObject.Find("Platform_Start")).GetComponent<Platform>());
@@ -49,7 +50,7 @@ public class LevelGenerator : MonoBehaviour {
         GameObject chosenPlatform;
         float ninjaPosY = ninja.getPosition().y;
 
-        if(ninjaPosY < (-7)){   //Ninja abajo spawn plat 1 y 2
+        if(ninjaPosY < (-6)){   //Ninja abajo spawn plat 1 y 2
             //Debug.Log("Abajo");
             chosenPlatform = platformsTypes[Random.Range(0, 1)];
         }

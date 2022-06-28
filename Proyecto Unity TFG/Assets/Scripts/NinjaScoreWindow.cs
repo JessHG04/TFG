@@ -18,6 +18,6 @@ public class NinjaScoreWindow : MonoBehaviour{
     }
     
     private void Update() {
-        //scoreText.text = "Score: " + (LevelGenerator.getInstance().getScore()).ToString();
+        scoreText.text = "Score: " + (LevelGenerator.getInstance().getScore()).ToString();
     }
 }
