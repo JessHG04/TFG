@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 104637646}
-  treeSpriteRenderer: {fileID: 104637645}
   treeMoveSpeed: 2
 --- !u!1 &207539174
 GameObject:
@@ -321,7 +320,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 207539176}
-  treeSpriteRenderer: {fileID: 207539175}
   treeMoveSpeed: 2
 --- !u!1 &284587163
 GameObject:
@@ -620,7 +618,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 692911152}
-  treeSpriteRenderer: {fileID: 692911151}
   treeMoveSpeed: 10
 --- !u!1 &838054640
 GameObject:
@@ -804,7 +801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 936475549}
-  treeSpriteRenderer: {fileID: 936475548}
   treeMoveSpeed: 10
 --- !u!1 &969068221
 GameObject:
@@ -1162,7 +1158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 1245002594}
-  treeSpriteRenderer: {fileID: 1245002593}
   treeMoveSpeed: 5
 --- !u!1 &1402060189
 GameObject:
@@ -1395,7 +1390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 1437003280}
-  treeSpriteRenderer: {fileID: 1437003279}
   treeMoveSpeed: 5
 --- !u!1 &1509647043
 GameObject:
@@ -1621,7 +1615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 1699707279}
-  treeSpriteRenderer: {fileID: 1699707278}
   treeMoveSpeed: 2
 --- !u!1 &1711894820
 GameObject:
@@ -1801,7 +1794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 1820052002}
-  treeSpriteRenderer: {fileID: 1820052001}
   treeMoveSpeed: 5
 --- !u!1 &1931135924
 GameObject:
@@ -1901,7 +1893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeTransform: {fileID: 1931135926}
-  treeSpriteRenderer: {fileID: 1931135925}
   treeMoveSpeed: 10
 --- !u!1001 &4466053167852593501
 PrefabInstance:
@@ -1924,7 +1915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.66
+      value: -8.43
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1932,7 +1923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalRotation.w

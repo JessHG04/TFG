@@ -10,7 +10,9 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] private List<Tree> midTrees;
     [SerializeField] private List<Tree> backTrees;
     private const float platformDestroyPositionX = -50f;
-    private const float PlayerPlatformDistance = 40f;
+    private const float playerPlatformDistance = 40f;
+    private const float CameraOrtoSize = 10f;
+    private const float treeMovePositionX = -40f;
     private List<Platform> platformList;
     private Vector3 lastEndPosition;
     private static LevelGenerator instance;
@@ -37,7 +39,7 @@ public class LevelGenerator : MonoBehaviour {
             //SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
         }
         else{
-            if(distance < PlayerPlatformDistance){
+            if(distance < playerPlatformDistance){
                 SpawnPlatform();
             }
             UpdatePlatforms();
@@ -94,14 +96,48 @@ public class LevelGenerator : MonoBehaviour {
     private void UpdateTrees(){
         for(int x = 0; x < frontTrees.Count; x++){
             frontTrees[x].Move();
+
+            if(frontTrees[x].getTransform().position.x < treeMovePositionX) {
+                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                for(int y = 0; y < frontTrees.Count; y++){
+                    if(frontTrees[y].getTransform().position.x > rightMostPositionX){
+                        rightMostPositionX = frontTrees[y].getTransform().position.x;
+                    }
+                }
+                //Debug.Log(rightMostPositionX);
+                //Move the ground to the right most position
+                frontTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, frontTrees[x].getTransform().position.y, -2.0f);
+            }
         }
 
         for(int x = 0; x < midTrees.Count; x++){
             midTrees[x].Move();
+
+            if(midTrees[x].getTransform().position.x < treeMovePositionX) {
+                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                for(int y = 0; y < midTrees.Count; y++){
+                    if(midTrees[y].getTransform().position.x > rightMostPositionX){
+                        rightMostPositionX = midTrees[y].getTransform().position.x;
+                    }
+                }
+                //Move the ground to the right most position
+                midTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, midTrees[x].getTransform().position.y, -1.0f);
+            }
         }
 
         for(int x = 0; x < backTrees.Count; x++){
             backTrees[x].Move();
+
+            if(backTrees[x].getTransform().position.x < treeMovePositionX) {
+                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                for(int y = 0; y < backTrees.Count; y++){
+                    if(backTrees[y].getTransform().position.x > rightMostPositionX){
+                        rightMostPositionX = backTrees[y].getTransform().position.x;
+                    }
+                }
+                //Move the ground to the right most position
+                backTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, backTrees[x].getTransform().position.y, 0.0f);
+            }
         }
     }
 }
