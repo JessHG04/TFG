@@ -6,6 +6,9 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] private Transform platformStart;
     [SerializeField] private Ninja ninja;
     [SerializeField] private List<GameObject> platformsTypes;
+    [SerializeField] private List<Tree> frontTrees;
+    [SerializeField] private List<Tree> midTrees;
+    [SerializeField] private List<Tree> backTrees;
     private const float platformDestroyPositionX = -50f;
     private const float PlayerPlatformDistance = 40f;
     private List<Platform> platformList;
@@ -38,12 +41,13 @@ public class LevelGenerator : MonoBehaviour {
                 SpawnPlatform();
             }
             UpdatePlatforms();
+            UpdateTrees();
         }
     }
 
     public void UpdateScore() {
         score++;
-        Debug.Log(score);
+        //Debug.Log(score);
     }
     
     private void SpawnPlatform() {
@@ -85,5 +89,19 @@ public class LevelGenerator : MonoBehaviour {
             }
         }
         lastEndPosition = platformList[platformList.Count - 1].getPlatformTransform().Find("EndPosition").position;
+    }
+
+    private void UpdateTrees(){
+        for(int x = 0; x < frontTrees.Count; x++){
+            frontTrees[x].Move();
+        }
+
+        for(int x = 0; x < midTrees.Count; x++){
+            midTrees[x].Move();
+        }
+
+        for(int x = 0; x < backTrees.Count; x++){
+            backTrees[x].Move();
+        }
     }
 }
