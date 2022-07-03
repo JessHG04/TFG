@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
@@ -25,6 +26,7 @@ public class LevelGenerator : MonoBehaviour {
     public int getScore() => score;
 
     private void Awake() {
+        //Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, 60);
         instance = this;
         lastEndPosition = platformStart.Find("EndPosition").position;
         platformList = new List<Platform>();
@@ -35,8 +37,7 @@ public class LevelGenerator : MonoBehaviour {
     private void Update() {
         float distance = lastEndPosition.x - ninja.getPosition().x;
         if(ninja.getPosition().y < (-14)){
-            
-            //SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
         }
         else{
             if(distance < playerPlatformDistance){

@@ -10,11 +10,15 @@ public class InitialSceneManager : MonoBehaviour {
     private void Awake() {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = target;
+        Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, 60);
     }
       
     private void Update() {
         if(Application.targetFrameRate != target){
             Application.targetFrameRate = target;
+        }
+        if(Input.GetKey(KeyCode.Escape)){
+            Application.Quit();
         }
     }
     

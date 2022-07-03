@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HigherLower.unity
     guid: 6f47d60bd8d29484f9574a3aada967ca
-  - enabled: 0
-    path: Assets/Scenes/NinjaRun2.unity
-    guid: ffe09085fb3e34f46ab1eff35aa55087
   m_configObjects: {}
