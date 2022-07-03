@@ -11,7 +11,7 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] private List<Tree> midTrees;
     [SerializeField] private List<Tree> backTrees;
     private const float platformDestroyPositionX = -50f;
-    private const float playerPlatformDistance = 40f;
+    private const float playerPlatformDistance = 20f;
     private const float CameraOrtoSize = 10f;
     private const float treeMovePositionX = -40f;
     private List<Platform> platformList;
@@ -38,6 +38,7 @@ public class LevelGenerator : MonoBehaviour {
         float distance = lastEndPosition.x - ninja.getPosition().x;
         if(ninja.getPosition().y < (-14)){
             SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
+            setHighscore();
         }
         else{
             if(distance < playerPlatformDistance){
@@ -57,17 +58,18 @@ public class LevelGenerator : MonoBehaviour {
         GameObject chosenPlatform;
         float ninjaPosY = ninja.getPosition().y;
 
-        if(ninjaPosY < (-6)){   //Ninja abajo spawn plat 1 y 2
+        if(ninjaPosY <= (-6)){   //Ninja abajo spawn plat 1 y 2
             //Debug.Log("Abajo");
-            chosenPlatform = platformsTypes[Random.Range(0, 1)];
-        }
-        else if(ninjaPosY > 1.5){   //Ninja arriba spawn plat 2 y 3
-            //Debug.Log("Arriba");
             chosenPlatform = platformsTypes[Random.Range(1, 2)];
+        }
+        else if(ninjaPosY >= 2.5){   //Ninja arriba spawn plat 2 y 3
+            //Debug.Log("Arriba");
+            chosenPlatform = platformsTypes[Random.Range(2, 5)];
+            //chosenPlatform = platformsTypes[2];
         }
         else{   //Ninja en medio, spawn plat 1, 2 y 3
             //Debug.Log("Medio");
-            chosenPlatform = platformsTypes[Random.Range(0, platformsTypes.Count)];
+            chosenPlatform = platformsTypes[Random.Range(1, 4)];
         }
         
         //GameObject chosenPlatform = platformsTypes[1];
@@ -139,6 +141,18 @@ public class LevelGenerator : MonoBehaviour {
                 //Move the ground to the right most position
                 backTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, backTrees[x].getTransform().position.y, 0.0f);
             }
+        }
+    }
+
+    public int getHighscore() {
+        return PlayerPrefs.GetInt("Highscore");
+    }
+
+    public void setHighscore() {
+        int oldScore = getHighscore();
+        if(score > oldScore){
+            PlayerPrefs.SetInt("Highscore", score);
+            PlayerPrefs.Save();
         }
     }
 }

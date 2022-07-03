@@ -1263,7 +1263,10 @@ MonoBehaviour:
   ninja: {fileID: 393032191}
   platformsTypes:
   - {fileID: 2773839760962676711, guid: 30d33ee3286b19748814f73749cae529, type: 3}
+  - {fileID: 2773839760962676711, guid: 30d33ee3286b19748814f73749cae529, type: 3}
   - {fileID: 8833287985491559580, guid: ec128a185c691bc49a39511d2cb513b7, type: 3}
+  - {fileID: 503156546266335171, guid: 820286060f3ddc246a58cdd1042f81a3, type: 3}
+  - {fileID: 503156546266335171, guid: 820286060f3ddc246a58cdd1042f81a3, type: 3}
   - {fileID: 503156546266335171, guid: 820286060f3ddc246a58cdd1042f81a3, type: 3}
   frontTrees:
   - {fileID: 1931135927}
@@ -1915,11 +1918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.43
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.24
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8896714576594731934, guid: 8aaeff86d83a3064abddefb095f6fdba, type: 3}
       propertyPath: m_LocalPosition.z
