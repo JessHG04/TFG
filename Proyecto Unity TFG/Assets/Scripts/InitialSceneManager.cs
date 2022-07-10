@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InitialSceneManager : MonoBehaviour {
-    public int target = 60;
+    //public int target = 60;
       
     private void Awake() {
         //QualitySettings.vSyncCount = 0;

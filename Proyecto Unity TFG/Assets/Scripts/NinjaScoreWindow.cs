@@ -14,7 +14,7 @@ public class NinjaScoreWindow : MonoBehaviour{
     }
 
     private void Start() {
-        highscoreText.text = "Highscore: " + PlayerPrefs.GetInt("Highscore").ToString();
+        highscoreText.text = "High Score: " + PlayerPrefs.GetInt("Highscore").ToString();
     }
     
     private void Update() {
