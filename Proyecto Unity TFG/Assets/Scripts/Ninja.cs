@@ -8,11 +8,13 @@ public class Ninja : MonoBehaviour {
     private bool isGrounded = false;
     [SerializeField] private float jumpForce;
     //[SerializeField] private LayerMask platformLayer;
+    private AudioSource ninjaJump;
     public Vector3 getPosition() => transform.position;
 
     private void Awake() {
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
+        ninjaJump = transform.GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -20,6 +22,7 @@ public class Ninja : MonoBehaviour {
             //Debug.Log("Jump");
             rigidbody2d.velocity = Vector2.up*jumpForce;
             isGrounded = false;
+            ninjaJump.PlayOneShot(ninjaJump.clip);
         }
     }
 
