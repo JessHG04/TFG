@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1037
+  controlID: 1573
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 986
+  controlID: 1578
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 995
+  controlID: 1612
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -2.6045249, y: -0.9852258, z: -0.042562768}
     speed: 2
-    m_Value: {x: -4.601046, y: 0.60696745, z: -3.95478}
+    m_Value: {x: -2.6045249, y: -0.9852258, z: -0.042562768}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 13.022601
     speed: 2
-    m_Value: 3.925591
+    m_Value: 13.022601
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -850,9 +850,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dc530000
-      m_LastClickedID: 21468
-      m_ExpandedIDs: a0f9fffffefaffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fefaffffa0520000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -898,8 +898,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1240
     y: 73
-    width: 624
-    height: 761
+    width: 430
+    height: 762
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -945,22 +945,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 76
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 76
   m_LastProjectPath: D:\TFG\Proyecto Unity TFG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 58530000
-    m_LastClickedID: 21336
-    m_ExpandedIDs: 000000003a5300003c5300003e5300004053000042530000445300004653000000ca9a3b
+    m_SelectedIDs: 26540000
+    m_LastClickedID: 21542
+    m_ExpandedIDs: 0000000006540000085400000a5400000c5400000e540000105400001254000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -988,7 +988,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003a5300003c5300003e5300004053000042530000445300004653000000ca9a3b
+    m_ExpandedIDs: 0000000006540000085400000a5400000c5400000e540000105400001254000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: ec530000aa530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
