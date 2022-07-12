@@ -8,7 +8,7 @@ public class Vibrate : MonoBehaviour {
         if(other.gameObject.tag == "Player") {
             //Debug.Log("Aviso");
             Handheld.Vibrate();
-            LevelGenerator.getInstance().UpdateScore();
+            LevelManager.getInstance().UpdateScore();
         }
     }
 }
