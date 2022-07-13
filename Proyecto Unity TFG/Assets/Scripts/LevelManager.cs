@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private List<Tree> frontTrees;
     [SerializeField] private List<Tree> midTrees;
     [SerializeField] private List<Tree> backTrees;
+    [SerializeField] private AudioClip newHighscore;
+    [SerializeField] private AudioClip noHighscore;
     private const float platformDestroyPositionX = -50f;
     private const float playerPlatformDistance = 20f;
     private const float CameraOrtoSize = 10f;
@@ -18,27 +20,26 @@ public class LevelManager : MonoBehaviour {
     private Vector3 lastEndPosition;
     private static LevelManager instance;
     private int score = 0;
+    private AudioSource playAudio;
 
-    public static LevelManager getInstance(){
-        return instance;
-        
-    }
+    public static LevelManager getInstance() => instance;
 
     public int getScore() => score;
 
+    public int getHighscore() => PlayerPrefs.GetInt("Highscore");
+
     private void Awake() {
-        //Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, 60);
         instance = this;
-        lastEndPosition = platformStart.Find("EndPosition").position;
         platformList = new List<Platform>();
+        playAudio = transform.GetComponent<AudioSource>();
+        lastEndPosition = platformStart.Find("EndPosition").position;
         platformList.Add((GameObject.Find("Platform_Start")).GetComponent<Platform>());
-        SpawnPlatform();        
+        SpawnPlatform();
     }
 
     private void Update() {
         float distance = lastEndPosition.x - ninja.getPosition().x;
         if(ninja.getPosition().y < (-14)){
-            SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
             setHighscore();
         }
         else{
@@ -52,28 +53,21 @@ public class LevelManager : MonoBehaviour {
 
     public void UpdateScore() {
         score++;
-        //Debug.Log(score);
     }
     
     private void SpawnPlatform() {
         GameObject chosenPlatform;
         float ninjaPosY = ninja.getPosition().y;
 
-        if(ninjaPosY <= (-6)){   //Ninja abajo spawn plat 1 y 2
-            //Debug.Log("Abajo");
-            chosenPlatform = platformsTypes[Random.Range(1, 2)];
+        if(ninjaPosY <= (-6)){   //Ninja down spawn plat 1 y 2
+            chosenPlatform = platformsTypes[Random.Range(0, 2)];
         }
-        else if(ninjaPosY >= 2.5){   //Ninja arriba spawn plat 2 y 3
-            //Debug.Log("Arriba");
+        else if(ninjaPosY >= 1.95){   //Ninja up spawn plat 2 y 3
             chosenPlatform = platformsTypes[Random.Range(2, 5)];
-            //chosenPlatform = platformsTypes[2];
         }
-        else{   //Ninja en medio, spawn plat 1, 2 y 3
-            //Debug.Log("Medio");
+        else{   //Ninja middle, spawn plat 1, 2 y 3
             chosenPlatform = platformsTypes[Random.Range(1, 4)];
         }
-        
-        //GameObject chosenPlatform = platformsTypes[1];
         Transform lastPlatformTransf = SpawnPlatform(chosenPlatform, lastEndPosition);
         lastEndPosition = lastPlatformTransf.Find("EndPosition").position;
     }
@@ -102,13 +96,12 @@ public class LevelManager : MonoBehaviour {
             frontTrees[x].Move();
 
             if(frontTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                float rightMostPositionX = CameraOrtoSize * 2.0f;           // The right most position of the game screen
                 for(int y = 0; y < frontTrees.Count; y++){
                     if(frontTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = frontTrees[y].getTransform().position.x;
                     }
                 }
-                //Debug.Log(rightMostPositionX);
                 //Move the ground to the right most position
                 frontTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, frontTrees[x].getTransform().position.y, -2.0f);
             }
@@ -118,7 +111,7 @@ public class LevelManager : MonoBehaviour {
             midTrees[x].Move();
 
             if(midTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                float rightMostPositionX = CameraOrtoSize * 2.0f;         // The right most position of the game screen
                 for(int y = 0; y < midTrees.Count; y++){
                     if(midTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = midTrees[y].getTransform().position.x;
@@ -133,7 +126,7 @@ public class LevelManager : MonoBehaviour {
             backTrees[x].Move();
 
             if(backTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;                                   // The right most position of the game screen
+                float rightMostPositionX = CameraOrtoSize * 2.0f;          // The right most position of the game screen
                 for(int y = 0; y < backTrees.Count; y++){
                     if(backTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = backTrees[y].getTransform().position.x;
@@ -145,15 +138,29 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    public int getHighscore() {
-        return PlayerPrefs.GetInt("Highscore");
-    }
-
-    public void setHighscore() {
+    private void setHighscore() {
         int oldScore = getHighscore();
+        playAudio.Pause();
         if(score > oldScore){
             PlayerPrefs.SetInt("Highscore", score);
             PlayerPrefs.Save();
+            playAudio.PlayOneShot(newHighscore);
+            Invoke("returnToMenu", newHighscore.length);
+            if(!playAudio.isPlaying){
+                playAudio.clip = newHighscore;
+                playAudio.Play();
+            }
         }
+        else{
+            Invoke("returnToMenu", noHighscore.length);
+            if(!playAudio.isPlaying){
+                playAudio.clip = noHighscore;
+                playAudio.Play();
+            }
+        }
+    }
+
+    private void returnToMenu() {
+        SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);
     }
 }
