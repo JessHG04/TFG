@@ -25,14 +25,10 @@ public class Ninja : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        //Layer 6 -> Platform
-        if(collision.gameObject.tag == "Platform") {
+        if(collision.gameObject.tag == "Platform") {         //Layer 6 -> Platform
             if(!isGrounded) {
                 isGrounded = true;
             }
-        }
-        if(collision.gameObject.tag == "Enemy") {
-            //isAlive = false;
         }
     }
 }

@@ -13,11 +13,12 @@ public class NinjaScoreWindow : MonoBehaviour{
         highscoreText = transform.Find("HighscoreText").GetComponent<Text>();
     }
 
-    private void Start() {
-        highscoreText.text = "High Score: " + PlayerPrefs.GetInt("Highscore").ToString();
-    }
+    /*private void Start() {
+        highscoreText.text = "Récord: " + PlayerPrefs.GetInt("Highscore").ToString();
+    }*/
     
     private void Update() {
-        scoreText.text = "Score: " + (LevelManager.getInstance().getScore()).ToString();
+        scoreText.text = "Puntuación: " + (LevelManager.getInstance().getScore()).ToString();
+        highscoreText.text = "Récord: " + PlayerPrefs.GetInt("Highscore").ToString();
     }
 }

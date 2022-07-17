@@ -20,19 +20,19 @@ public class LevelManager : MonoBehaviour {
     private Vector3 lastEndPosition;
     private static LevelManager instance;
     private int score = 0;
+    private int oldHighScore = 0;
     private AudioSource playAudio;
 
     public static LevelManager getInstance() => instance;
 
     public int getScore() => score;
 
-    public int getHighscore() => PlayerPrefs.GetInt("Highscore");
-
     private void Awake() {
         instance = this;
         platformList = new List<Platform>();
         playAudio = transform.GetComponent<AudioSource>();
         lastEndPosition = platformStart.Find("EndPosition").position;
+        oldHighScore = PlayerPrefs.GetInt("Highscore");
         platformList.Add((GameObject.Find("Platform_Start")).GetComponent<Platform>());
         SpawnPlatform();
     }
@@ -53,6 +53,10 @@ public class LevelManager : MonoBehaviour {
 
     public void UpdateScore() {
         score++;
+        if(score > oldHighScore){
+            PlayerPrefs.SetInt("Highscore", score);
+            PlayerPrefs.Save();
+        }
     }
     
     private void SpawnPlatform() {
@@ -139,12 +143,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     private void setHighscore() {
-        int oldScore = getHighscore();
         playAudio.Pause();
-        if(score > oldScore){
-            PlayerPrefs.SetInt("Highscore", score);
-            PlayerPrefs.Save();
-            playAudio.PlayOneShot(newHighscore);
+        if(score > oldHighScore){
             Invoke("returnToMenu", newHighscore.length);
             if(!playAudio.isPlaying){
                 playAudio.clip = newHighscore;
