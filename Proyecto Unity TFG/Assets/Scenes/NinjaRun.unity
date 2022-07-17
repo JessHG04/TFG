@@ -1377,8 +1377,8 @@ MonoBehaviour:
   - {fileID: 207539177}
   - {fileID: 1699707280}
   - {fileID: 104637647}
-  newHighscore: {fileID: 8300000, guid: ff0d58aaf6de77e43a2af3a9ce3108b2, type: 3}
-  noHighscore: {fileID: 8300000, guid: ff0d58aaf6de77e43a2af3a9ce3108b2, type: 3}
+  newHighscore: {fileID: 8300000, guid: 102a099c5af72f542b57e2da7dfdf4eb, type: 3}
+  noHighscore: {fileID: 8300000, guid: 23b1e35aee7342c47bf4c948e0172d87, type: 3}
 --- !u!4 &1418946614
 Transform:
   m_ObjectHideFlags: 0

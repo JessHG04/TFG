@@ -20,7 +20,4 @@ public class InitialSceneManager : MonoBehaviour {
         SceneManager.LoadScene("HigherLower", LoadSceneMode.Single);
     }
 
-    public void ExitButtonClicked() {
-        Application.Quit();
-    }
 }

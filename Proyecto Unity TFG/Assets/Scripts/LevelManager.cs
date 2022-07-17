@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour {
     private void Update() {
         float distance = lastEndPosition.x - ninja.getPosition().x;
         if(ninja.getPosition().y < (-14)){
-            setHighscore();
+            playEndGame();
         }
         else{
             if(distance < playerPlatformDistance){
@@ -100,13 +100,13 @@ public class LevelManager : MonoBehaviour {
             frontTrees[x].Move();
 
             if(frontTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;           // The right most position of the game screen
+                float rightMostPositionX = 0.0f;
                 for(int y = 0; y < frontTrees.Count; y++){
                     if(frontTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = frontTrees[y].getTransform().position.x;
                     }
                 }
-                //Move the ground to the right most position
+                //Move the layer to the right most position
                 frontTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, frontTrees[x].getTransform().position.y, -2.0f);
             }
         }
@@ -115,13 +115,13 @@ public class LevelManager : MonoBehaviour {
             midTrees[x].Move();
 
             if(midTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;         // The right most position of the game screen
+                float rightMostPositionX = 0.0f;
                 for(int y = 0; y < midTrees.Count; y++){
                     if(midTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = midTrees[y].getTransform().position.x;
                     }
                 }
-                //Move the ground to the right most position
+                //Move the layer to the right most position
                 midTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, midTrees[x].getTransform().position.y, -1.0f);
             }
         }
@@ -130,29 +130,29 @@ public class LevelManager : MonoBehaviour {
             backTrees[x].Move();
 
             if(backTrees[x].getTransform().position.x < treeMovePositionX) {
-                float rightMostPositionX = CameraOrtoSize * 2.0f;          // The right most position of the game screen
+                float rightMostPositionX = 0.0f;
                 for(int y = 0; y < backTrees.Count; y++){
                     if(backTrees[y].getTransform().position.x > rightMostPositionX){
                         rightMostPositionX = backTrees[y].getTransform().position.x;
                     }
                 }
-                //Move the ground to the right most position
+                //Move the layer to the right most position
                 backTrees[x].getTransform().position = new Vector3(rightMostPositionX + 40, backTrees[x].getTransform().position.y, 0.0f);
             }
         }
     }
 
-    private void setHighscore() {
+    private void playEndGame() {
         playAudio.Pause();
         if(score > oldHighScore){
-            Invoke("returnToMenu", newHighscore.length);
+            Invoke("returnToMenu", 2.0f);
             if(!playAudio.isPlaying){
                 playAudio.clip = newHighscore;
                 playAudio.Play();
             }
         }
         else{
-            Invoke("returnToMenu", noHighscore.length);
+            Invoke("returnToMenu", 2.0f);
             if(!playAudio.isPlaying){
                 playAudio.clip = noHighscore;
                 playAudio.Play();

@@ -12,10 +12,6 @@ public class NinjaScoreWindow : MonoBehaviour{
         scoreText = transform.Find("ScoreText").GetComponent<Text>();
         highscoreText = transform.Find("HighscoreText").GetComponent<Text>();
     }
-
-    /*private void Start() {
-        highscoreText.text = "Récord: " + PlayerPrefs.GetInt("Highscore").ToString();
-    }*/
     
     private void Update() {
         scoreText.text = "Puntuación: " + (LevelManager.getInstance().getScore()).ToString();
