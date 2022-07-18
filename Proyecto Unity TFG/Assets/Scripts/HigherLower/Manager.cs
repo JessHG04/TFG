@@ -8,20 +8,20 @@ public class Manager : MonoBehaviour {
     private static Manager instance;
     private int round = 0;
     private int maxRounds;
-    private int score = 0;
+    private int scoreRound = 1;
     private int oldHighScore = 0;
     [SerializeField] private List<Sound> soundsList;
+    [SerializeField] private List<Sound> endSoundsList;
 
     public static Manager getInstance() => instance;
 
-    public int getScore() => score;
+    public int getScoreRound() => scoreRound;
 
     private void Awake() {
         instance = this;
         Vibration.Init();
         maxRounds = soundsList.Count - 1;
-        Debug.Log(maxRounds);
-        //oldHighScore = PlayerPrefs.GetInt("Highscore");
+        oldHighScore = PlayerPrefs.GetInt("HighscoreHG");
         shuffle();
         playFirstSound();
     }
@@ -31,7 +31,7 @@ public class Manager : MonoBehaviour {
         Sound snd;
         int it = 0;
         
-        while(it < 2){
+        while(it < 3){
             for(int x = 0; x < soundsList.Count; x++){
                 snd = soundsList[x];
                 soundsList[x] = soundsList[randomIndex];
@@ -41,47 +41,53 @@ public class Manager : MonoBehaviour {
         }
     }
 
+    public void UpdateScore() {
+        scoreRound++;
+        if(scoreRound > oldHighScore){
+            PlayerPrefs.SetInt("HighscoreHG", scoreRound);
+            PlayerPrefs.Save();
+        }
+    }
+
     public void HighClicked() {
         int nextRound = round + 1;
+        soundsList[round].stopSound();
+        soundsList[nextRound].stopSound();
         if(soundsList[nextRound].getFreq() > soundsList[round].getFreq()){
-            Debug.Log("Acierto");
-            score++;
+            UpdateScore();
+            round++;
+            if(round < maxRounds){
+                playFirstSound();
+            }
+            else{
+                Vibration.Cancel();
+                playEndGame();
+            }
         }
         else{
-            Debug.Log("Fallo");
             Vibration.Cancel();
-            returnToMenu();
-        }
-        round++;
-        if(round < maxRounds){
-            playFirstSound();
-        }
-        else{
-            Debug.Log("Fin del juego");
-            Vibration.Cancel();
-            returnToMenu();
+            playEndGame();
         }
     }
 
     public void LowClicked() {
         int nextRound = round + 1;
+        soundsList[round].stopSound();
+        soundsList[nextRound].stopSound();
         if(soundsList[nextRound].getFreq() < soundsList[round].getFreq()){
-            Debug.Log("Acierto");
-            score++;
+            UpdateScore();
+            round++;
+            if(round < maxRounds){
+                playFirstSound();
+            }
+            else{
+                Vibration.Cancel();
+                playEndGame();
+            }
         }
         else{
-            Debug.Log("Fallo");
             Vibration.Cancel();
-            returnToMenu();
-        }
-        round++;
-        if(round < maxRounds){
-            playFirstSound();
-        }
-        else{
-            Debug.Log("Fin del juego");
-            Vibration.Cancel();
-            returnToMenu();
+            playEndGame();
         }
     }
 
@@ -98,23 +104,20 @@ public class Manager : MonoBehaviour {
         soundsList[round + 1].playSound();
     }
 
-    /*private void playEndGame() {
-        playAudio.Pause();
-        if(score > oldHighScore){
+    private void playEndGame() {
+        if(scoreRound > oldHighScore){
             Invoke("returnToMenu", 2.0f);
-            if(!playAudio.isPlaying){
-                playAudio.clip = newHighscore;
-                playAudio.Play();
+            if(!endSoundsList[0].isPlaying()){
+                endSoundsList[0].playSound();
             }
         }
         else{
             Invoke("returnToMenu", 2.75f);
-            if(!playAudio.isPlaying){
-                playAudio.clip = noHighscore;
-                playAudio.Play();
+            if(!endSoundsList[1].isPlaying()){
+                endSoundsList[1].playSound();
             }
         }
-    }*/
+    }
 
     private void returnToMenu() {
         SceneManager.LoadScene("InitialScene", LoadSceneMode.Single);

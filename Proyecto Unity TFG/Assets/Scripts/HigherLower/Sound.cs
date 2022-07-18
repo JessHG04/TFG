@@ -7,11 +7,13 @@ public class Sound : MonoBehaviour {
     [SerializeField] private int freq;
 
     public int getFreq() => freq;
-    //public int getSoundLength() => Mathf.RoundToInt(sound.clip.length);
+    public bool isPlaying() => sound.isPlaying;
 
     public void playSound() {
-        //sound.PlayOneShot(sound.clip);
-        //Debug.Log("playSound");
         sound.PlayOneShot(sound.clip);
+    }
+
+    public void stopSound() {
+        sound.Stop();
     }
 }
