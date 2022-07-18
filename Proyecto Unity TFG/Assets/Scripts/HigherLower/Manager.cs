@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour {
     private int round = 0;
     private int maxRounds;
     private int scoreRound = 1;
-    private int oldHighScore = 0;
+    private int oldHighScore;
     [SerializeField] private List<Sound> soundsList;
     [SerializeField] private List<Sound> endSoundsList;
 
@@ -21,6 +21,11 @@ public class Manager : MonoBehaviour {
         instance = this;
         Vibration.Init();
         maxRounds = soundsList.Count - 1;
+        oldHighScore = PlayerPrefs.GetInt("HighscoreHG");
+        if(oldHighScore == 0){
+            PlayerPrefs.SetInt("HighscoreHG", 1);
+            PlayerPrefs.Save();
+        }
         oldHighScore = PlayerPrefs.GetInt("HighscoreHG");
         shuffle();
         playFirstSound();
@@ -93,7 +98,7 @@ public class Manager : MonoBehaviour {
 
     private void playFirstSound() {
         int ms = soundsList[round].getFreq();
-        int sec = ms / 1000;
+        int sec = (ms / 1000) + 1;
         Vibration.Vibrate(ms); //Miliseconds
         soundsList[round].playSound();
         Invoke("playSecondSound", sec); //Seconds
