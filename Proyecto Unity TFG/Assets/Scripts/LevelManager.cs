@@ -152,7 +152,7 @@ public class LevelManager : MonoBehaviour {
             }
         }
         else{
-            Invoke("returnToMenu", 2.0f);
+            Invoke("returnToMenu", 2.75f);
             if(!playAudio.isPlaying){
                 playAudio.clip = noHighscore;
                 playAudio.Play();
