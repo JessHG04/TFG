@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private AudioClip noHighscore;
     private const float platformDestroyPositionX = -50f;
     private const float playerPlatformDistance = 20f;
-    private const float CameraOrtoSize = 10f;
     private const float treeMovePositionX = -40f;
     private List<Platform> platformList;
     private Vector3 lastEndPosition;
