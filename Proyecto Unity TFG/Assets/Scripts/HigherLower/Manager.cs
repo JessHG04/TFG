@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour {
     private int scoreRound = 1;
     private int oldHighScore;
     [SerializeField] private List<Sound> soundsList;
-    [SerializeField] private List<Sound> endSoundsList;
+    [SerializeField] private List<Sound> voiceList;
 
     public static Manager getInstance() => instance;
 
@@ -27,8 +27,7 @@ public class Manager : MonoBehaviour {
             PlayerPrefs.Save();
         }
         oldHighScore = PlayerPrefs.GetInt("HighscoreHG");
-        shuffle();
-        playFirstSound();
+        Invoke("shuffle", 14.0f);
     }
 
     private void shuffle() {
@@ -44,10 +43,13 @@ public class Manager : MonoBehaviour {
             }
             it++;
         }
+        playFirstSound();
     }
 
     public void UpdateScore() {
-        scoreRound++;
+        if(scoreRound != maxRounds){
+            scoreRound++;
+        }
         if(scoreRound > oldHighScore){
             PlayerPrefs.SetInt("HighscoreHG", scoreRound);
             PlayerPrefs.Save();
@@ -105,21 +107,27 @@ public class Manager : MonoBehaviour {
     }
 
     private void playSecondSound() {
-        Vibration.Vibrate(soundsList[round].getFreq()); //Miliseconds
+        Vibration.Vibrate(soundsList[round + 1].getFreq()); //Miliseconds
         soundsList[round + 1].playSound();
     }
 
-    private void playEndGame() {
-        if(scoreRound > oldHighScore){
+    private void playEndGame() {        
+        if(scoreRound == maxRounds){
+            Invoke("returnToMenu", 3.5f);
+            if(!voiceList[0].isPlaying()){
+                voiceList[0].playSound();
+            }
+        }
+        else if(scoreRound > oldHighScore){
             Invoke("returnToMenu", 2.0f);
-            if(!endSoundsList[0].isPlaying()){
-                endSoundsList[0].playSound();
+            if(!voiceList[1].isPlaying()){
+                voiceList[1].playSound();
             }
         }
         else{
             Invoke("returnToMenu", 2.75f);
-            if(!endSoundsList[1].isPlaying()){
-                endSoundsList[1].playSound();
+            if(!voiceList[2].isPlaying()){
+                voiceList[2].playSound();
             }
         }
     }
