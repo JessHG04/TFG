@@ -14,7 +14,6 @@ public class Manager : MonoBehaviour {
     [SerializeField] private List<Sound> voiceList;
 
     public static Manager getInstance() => instance;
-
     public int getScoreRound() => scoreRound;
 
     private void Awake() {
@@ -46,14 +45,15 @@ public class Manager : MonoBehaviour {
         playFirstSound();
     }
 
-    public void UpdateScore() {
-        if(scoreRound != maxRounds){
-            scoreRound++;
-        }
-        if(scoreRound > oldHighScore){
-            PlayerPrefs.SetInt("HighscoreHG", scoreRound);
-            PlayerPrefs.Save();
-        }
+    private void playFirstSound() {
+        Vibration.Vibrate(soundsList[round].getFreq());
+        soundsList[round].playSound();
+        Invoke("playSecondSound", 3.0f);
+    }
+
+    private void playSecondSound() {
+        Vibration.Vibrate(soundsList[round + 1].getFreq());
+        soundsList[round + 1].playSound();
     }
 
     public void HighClicked() {
@@ -98,17 +98,14 @@ public class Manager : MonoBehaviour {
         }
     }
 
-    private void playFirstSound() {
-        int ms = soundsList[round].getFreq();
-        int sec = (ms / 1000) + 1;
-        Vibration.Vibrate(ms); //Miliseconds
-        soundsList[round].playSound();
-        Invoke("playSecondSound", sec); //Seconds
-    }
-
-    private void playSecondSound() {
-        Vibration.Vibrate(soundsList[round + 1].getFreq()); //Miliseconds
-        soundsList[round + 1].playSound();
+    public void UpdateScore() {
+        if(scoreRound != maxRounds){
+            scoreRound++;
+        }
+        if(scoreRound > oldHighScore){
+            PlayerPrefs.SetInt("HighscoreHG", scoreRound);
+            PlayerPrefs.Save();
+        }
     }
 
     private void playEndGame() {        
